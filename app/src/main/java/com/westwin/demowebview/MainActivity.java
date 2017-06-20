@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        WebView.enableSlowWholeDocumentDraw();
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            WebView.enableSlowWholeDocumentDraw();
+        }
 
         setContentView(R.layout.activity_main);
 
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView = (WebView) findViewById(R.id.webView);
         myWebViewClient = new MyWebViewClient(getApplicationContext(), mWebView);
         mWebView.setWebViewClient(myWebViewClient);
-        mWebView.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0");
+        // mWebView.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0");
         mWebView.getSettings().setJavaScriptEnabled(true);
         // Set cache mode
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             String url = "https://item.jd.com/1474187619.html";
             url = "http://ifeng.com";
             url = "http://lt.cjdby.net/";
-            url = "http://www.guancha.cn/politics/2017_02_10_393577.shtml";
+            url = "http://www.guancha.cn";
             myWebViewClient.setmUrl(url);
             mWebView.loadUrl(url);
         }
